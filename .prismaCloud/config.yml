@@ -1,0 +1,7 @@
+template_type: TF
+terraform_version: 0.13
+
+tags:
+  org: Palo Alto Networks
+  team: Prisma Cloud PMM
+  env: Dev
