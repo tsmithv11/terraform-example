@@ -41,4 +41,3 @@ resource "aws_instance" "web_server_instance" {
   instance_type = "t2.micro"
   security_groups = [ "aws_security_group.ssh_traffic" ]
 }
-
