@@ -1,6 +1,18 @@
 version: 2.1
 orbs:
   pcs: prisma_cloud/devops_security@3.0.3
+jobs:
+  docker_safe_build:
+    executor: pcs/compute
+    steps:
+      - checkout
+      - run: 'docker pull nginx'
+      - pcs/scan_image:
+          prisma_cloud_compute_url: $prisma_cloud_compute_url
+          prisma_cloud_compute_username: $prisma_cloud_access_key
+          prisma_cloud_compute_password: prisma_cloud_secret_key
+          prisma_cloud_scan_image: nginx
+          reports: csv,junit
 workflows:
   scan:
     jobs:
@@ -11,3 +23,4 @@ workflows:
           prisma_cloud_asset_name: $CIRCLE_PROJECT_REPONAME
           prisma_cloud_failure_criteria: 'High:1, Medium:1, Low:1, Operator:OR'
           prisma_cloud_tags: 'env:dev, team:PMM'
+      - docker_safe_build
