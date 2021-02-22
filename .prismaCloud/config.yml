@@ -1,5 +1,5 @@
 template_type: TF
-terraform_version: 0.13
+terraform_version: 0.14
 
 tags:
   org: Palo Alto Networks
