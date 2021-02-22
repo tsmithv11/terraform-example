@@ -1,13 +1,12 @@
 version: 2.1
 orbs:
-  devops_security: prisma_cloud/devops_security@3.0.3
+  pcs: prisma_cloud/devops_security@3.0.3
 workflows:
-  devops_security:
-    # Run the welcome/run job in its own container
+  scan:
     jobs:
       - pcs/scan_iac:
           prisma_cloud_access_key: $prisma_cloud_access_key
-          prisma_cloud_secret_key: $prisma_cloud_secret_key
+          prisma_cloud_secret_key: prisma_cloud_secret_key
           prisma_cloud_api_url: $prisma_cloud_api_url
           prisma_cloud_asset_name: $CIRCLE_PROJECT_REPONAME
           prisma_cloud_failure_criteria: 'High:1, Medium:1, Low:1, Operator:OR'
