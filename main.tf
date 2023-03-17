@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "storage" {
-  bucket = "storage_bucket"
+  bucket = "storage_bucket" 
   acl = var.s3_access
 }
 
@@ -16,7 +16,7 @@ resource "aws_security_group" "ssh_traffic" {
   description = "Allow SSH inbound traffic"
 
   ingress {
-    description = "SSH"
+    description = "SSH" 
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -36,7 +36,7 @@ resource "aws_security_group" "ssh_traffic" {
 }
 
 resource "aws_instance" "web_server_instance" {
-  count = 10
+  count = 10 
   ami = "ami-03d315ad33b9d49c4"
   instance_type = "t2.micro"
   security_groups = [ "aws_security_group.ssh_traffic" ]
